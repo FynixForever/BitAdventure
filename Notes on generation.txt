@@ -1,0 +1,29 @@
+NOTE:
+Seeing the fact it is not guaranteed that a passage can be reached, mechanics will have to be devised so to work around this problem.
+Stuff like jetpacks, double-jump crates, etc etc. This way it becomes a puzzle.
+
+
+Corridor	-	Tools can be found here
+XXX
+
+XXX
+
+DeadEnd		-	Loot can be found here
+XXX    XXX
+  X || X
+XXX    XXX
+
+Pit		-	Mechanisms or traps can be found here
+X X
+X X
+XXX
+
+Summit		-	Treasury or boss can be found here
+XXX
+X X
+X X
+
+Other		-	Other shit
+X X    XXX    X X    X X    XXX
+X X ||   X ||   X || X   || X
+X X    X X    XXX    XXX    X X
