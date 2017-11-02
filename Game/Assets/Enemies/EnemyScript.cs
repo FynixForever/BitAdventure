@@ -11,9 +11,9 @@ public class EnemyScript : ControllableObject {
         set { waypoints = value; }
     }
 
-    protected void Start()
+    new protected void Start()
     {
-        controller = GetComponent<Controller2DScript>();
+        base.Start();
 
         gravity = LevelGeneratorScript.LevelGravity;
 

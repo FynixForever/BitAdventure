@@ -14,10 +14,10 @@ public class PlayerScript : ControllableObject {
     bool isJumping = false;
     float jumpingTimePassed = 0f;
 
-    void Start()
+    new void Start()
     {
-        controller = GetComponent<Controller2DScript>();
-
+        base.Start();
+        
         //Calculate gravity and jump velocity based on jump height and jump time, according to physics
         gravity = -(2 * (jumpHeight) / Mathf.Pow(timeToJumpApex, 2));
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;

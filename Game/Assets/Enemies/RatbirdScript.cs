@@ -13,8 +13,8 @@ public class RatbirdScript : EnemyScript {
         pos1 = this.transform.position;
         pos2 = waypoints[0].position;
 
-        facing = pos1.x < pos2.x;
-        if (!facing)
+        Facing = pos1.x < pos2.x;
+        if (!Facing)
         {
             Vector3 p = pos1;
             pos1 = pos2;
@@ -25,12 +25,12 @@ public class RatbirdScript : EnemyScript {
     // Update is called once per frame
     protected override void Update()
     {
-        if (facing)
-            facing = !(transform.position.x >= pos2.x);
+        if (Facing)
+            Facing = !(transform.position.x >= pos2.x);
         else
-            facing = transform.position.x <= pos1.x;
+            Facing = transform.position.x <= pos1.x;
 
-        horizontalAxis = facing ? 1 : -1;
+        horizontalAxis = Facing ? 1 : -1;
 
         base.Update();
     }
