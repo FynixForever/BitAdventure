@@ -33,3 +33,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 Game/Temp/UnityLockfile
+Game/.vs/Game/v15/.suo
