@@ -17,19 +17,23 @@ public class Controller2DScript : MonoBehaviour {
 
         public bool semiFloor;
 
-        public bool climbingSlope;
+        public bool climbingSlope, descendingSlope;
         public float slopeAngle, slopeAngleOld;
 
-        public void Reset()
+        public Vector3 velocityOld;
+
+        public void Reset(Vector3 velocity)
         {
             above = below = false;
             left = right = false;
 
             semiFloor = false;
 
-            climbingSlope = false;
+            climbingSlope = descendingSlope = false;
             slopeAngleOld = slopeAngle;
             slopeAngle = 0;
+
+            velocityOld = velocity;
         }
     }
 
@@ -47,6 +51,7 @@ public class Controller2DScript : MonoBehaviour {
     float verRaySpacing;
 
     public float maxClimbAngle = 75f;
+    public float maxDescendAngle = 75f;
 
     public CollisionInfo collisions;
 
@@ -62,11 +67,17 @@ public class Controller2DScript : MonoBehaviour {
         UpdateRayCastOrigins();
 
         //Reset saved collisions from last frame
-        collisions.Reset();
+        collisions.Reset(velocity);
+
+        //Check collisions for descending slopes
+        if (velocity.y < 0)
+            DescendSlope(ref velocity);
 
         //Check raycast in vertical and horizontal direction
-        HorizontalMove(ref velocity);
-        VerticalMove(ref velocity, moveThroughFloor);
+        if (velocity.x != 0)
+            HorizontalMove(ref velocity);
+        if (velocity.y != 0)
+            VerticalMove(ref velocity, moveThroughFloor);
 
         //Actually move the player
         transform.Translate(velocity);
@@ -87,14 +98,24 @@ public class Controller2DScript : MonoBehaviour {
 
             if (hit)
             {
+                //Don't collide a FloorOnly from the bottom or when moving up
                 string tag = hit.collider.tag;
                 if (tag != "Solids")
                     return;
 
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
+                //Check if can climb a slope
                 if (i == 0 && slopeAngle <= maxClimbAngle)
                 {
+                    //For smooth transitions between descending and climbing slopes
+                    if (collisions.descendingSlope)
+                    {
+                        collisions.descendingSlope = false;
+                        velocity = collisions.velocityOld;
+                    }
+
+                    //Climb the slope
                     float distanceToSlopeStart = 0;
                     if (slopeAngle != collisions.slopeAngleOld)
                     {
@@ -143,9 +164,8 @@ public class Controller2DScript : MonoBehaviour {
 
             if (hit)
             {
-                string tag = hit.collider.tag;
-
                 //Don't collide a FloorOnly from the bottom or when moving up
+                string tag = hit.collider.tag;
                 if (tag == "Floor Only" && (direction == 1 || moveThroughFloor))
                     return;
 
@@ -169,6 +189,7 @@ public class Controller2DScript : MonoBehaviour {
             rayOrigin += Vector2.right * verRaySpacing;
         }
 
+        //For smooth transitions between slopes of different angles
         if (collisions.climbingSlope)
         {
             float directionX = Mathf.Sign(velocity.x);
@@ -178,6 +199,11 @@ public class Controller2DScript : MonoBehaviour {
 
             if (hit)
             {
+                //Don't collide a FloorOnly from the bottom or when moving up
+                string tag = hit.collider.tag;
+                if (tag == "Floor Only")
+                    return;
+
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
                 if (slopeAngle != collisions.slopeAngle)
                 {
@@ -203,6 +229,38 @@ public class Controller2DScript : MonoBehaviour {
             collisions.below = true;
             collisions.climbingSlope = true;
             collisions.slopeAngle = slopeAngle;
+        }
+    }
+    void DescendSlope(ref Vector3 velocity)
+    {
+        float directionX = Mathf.Sign(velocity.x);
+        Vector2 rayOrigin = (directionX == -1) ? rcOrigins.bottomRight : rcOrigins.bottomLeft;
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, -Vector2.up, Mathf.Infinity, collisionMask);
+
+        if (hit)
+        {
+            //Don't collide a FloorOnly from the bottom or when moving up
+            string tag = hit.collider.tag;
+            if (tag != "Solids")
+                return;
+            
+            float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+            if (slopeAngle != 0 && slopeAngle <= maxDescendAngle)
+            {
+                if (Mathf.Sign(hit.normal.x) == directionX)
+                {
+                    if (hit.distance - skinWidth <= Mathf.Tan(slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x))
+                    {
+                        float moveDistance = Mathf.Abs(velocity.x);
+                        float descendVelocityY = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
+                        velocity.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(velocity.x);
+                        velocity.y -= descendVelocityY;
+                        collisions.slopeAngle = slopeAngle;
+                        collisions.descendingSlope = true;
+                        collisions.below = true;
+                    }
+                }
+            }
         }
     }
 
