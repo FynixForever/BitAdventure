@@ -9,6 +9,7 @@ public class ControllableObject : MonoBehaviour
     protected Vector3 velocity;
 
     protected Controller2DScript controller;
+    protected SpriteRenderer renderer;
 
     //Height in units
     public float jumpHeight = 2.5f;
@@ -47,10 +48,21 @@ public class ControllableObject : MonoBehaviour
     public float flinchTime = 1;
 
     //Animator variables
-    protected bool facing = true;    //true = right, false = left
-
-    void Start()
+    private bool facing = true;    //true = right, false = left
+    protected bool Facing
     {
+        get { return facing; }
+        set
+        {
+            facing = value;
+            renderer.flipX = facing;
+        }
+    }
+
+    protected void Start()
+    {
+        controller = GetComponent<Controller2DScript>();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     virtual protected void Update()
@@ -70,7 +82,7 @@ public class ControllableObject : MonoBehaviour
         float targetVelocity = horizontalAxis * (run ? runSpeed : walkSpeed);
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocity, ref velocitySmoothX, (controller.collisions.below || onStairs) && !flinched ? smoothTimeGrounded : smoothTimeAirborne);
         if (velocity.x != 0)
-            facing = velocity.x > 0;
+            Facing = velocity.x > 0;
 
         targetVelocity = verticalAxis * walkSpeed;
         bool moveThroughFloor = controller.collisions.semiFloor && targetVelocity < 0;
