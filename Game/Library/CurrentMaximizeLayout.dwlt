@@ -19,10 +19,17 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
+<<<<<<< HEAD
   m_MinSize: {x: 579, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
   controlID: 1609
+=======
+  m_MinSize: {x: 581, y: 471}
+  m_MaxSize: {x: 14004, y: 14042}
+  vertical: 0
+  controlID: 3002
+>>>>>>> Slopes
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -119,10 +126,17 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 731
+<<<<<<< HEAD
   m_MinSize: {x: 579, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 1
   controlID: 1610
+=======
+  m_MinSize: {x: 581, y: 471}
+  m_MaxSize: {x: 14004, y: 14042}
+  vertical: 1
+  controlID: 3003
+>>>>>>> Slopes
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,10 +158,17 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 460
+<<<<<<< HEAD
   m_MinSize: {x: 579, y: 221}
   m_MaxSize: {x: 12004, y: 4021}
   vertical: 0
   controlID: 1489
+=======
+  m_MinSize: {x: 581, y: 200}
+  m_MaxSize: {x: 12006, y: 4021}
+  vertical: 0
+  controlID: 3004
+>>>>>>> Slopes
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,8 +187,13 @@ MonoBehaviour:
     y: 0
     width: 321
     height: 460
+<<<<<<< HEAD
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
+=======
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+>>>>>>> Slopes
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -202,8 +228,13 @@ MonoBehaviour:
     height: 439
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 60b4feff
     m_LastClickedID: -84896
+=======
+    m_SelectedIDs: b2bdfcff
+    m_LastClickedID: -213582
+>>>>>>> Slopes
     m_ExpandedIDs: e4fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -271,8 +302,13 @@ MonoBehaviour:
     y: 0
     width: 819
     height: 460
+<<<<<<< HEAD
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
+=======
+  m_MinSize: {x: 104, y: 121}
+  m_MaxSize: {x: 4004, y: 4021}
+>>>>>>> Slopes
   m_ActualView: {fileID: 9}
   m_Panes:
   - {fileID: 9}
@@ -311,9 +347,15 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: -1.5131822, y: -0.44912457, z: 0}
     speed: 2
     m_Value: {x: -1.5131822, y: -0.44912457, z: 0}
+=======
+    m_Target: {x: 0, y: 0, z: 0}
+    speed: 2
+    m_Value: {x: 0, y: 0, z: 0}
+>>>>>>> Slopes
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -340,9 +382,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 2.5166364
     speed: 2
     m_Value: 2.5166364
+=======
+    m_Target: 22
+    speed: 2
+    m_Value: 22
+>>>>>>> Slopes
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -563,7 +611,11 @@ MonoBehaviour:
   m_MinSize: {x: 334, y: 271}
   m_MaxSize: {x: 14004, y: 10021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 1611
+=======
+  controlID: 2980
+>>>>>>> Slopes
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -633,6 +685,7 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Sprites
   m_LastFoldersGridSize: 67
+<<<<<<< HEAD
   m_LastProjectPath: C:\Users\Emile\Desktop\BitAdventure\Game
   m_IsLocked: 0
   m_FolderTreeState:
@@ -640,6 +693,15 @@ MonoBehaviour:
     m_SelectedIDs: 4c250000
     m_LastClickedID: 9548
     m_ExpandedIDs: 00000000c824000000ca9a3bffffff7f
+=======
+  m_LastProjectPath: C:\Users\Emile\Desktop\BitAdventure\BitAdventure\Game
+  m_IsLocked: 0
+  m_FolderTreeState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 5c250000
+    m_LastClickedID: 9564
+    m_ExpandedIDs: 00000000cc24000000ca9a3bffffff7f
+>>>>>>> Slopes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -667,7 +729,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c824000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000cc24000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -692,9 +754,15 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
+<<<<<<< HEAD
     m_SelectedInstanceIDs: 60b4feff
     m_LastClickedInstanceID: -84896
     m_HadKeyboardFocusLastEvent: 0
+=======
+    m_SelectedInstanceIDs: b2bdfcff
+    m_LastClickedInstanceID: -213582
+    m_HadKeyboardFocusLastEvent: 1
+>>>>>>> Slopes
     m_ExpandedInstanceIDs: bc0f0000be070000820d0000b40d0000600100006807000072040000180a000070040000160a0000d0080000d2120000760c0000c00c0000cc0b000030130000d8150000d2170000de690000566a0000346b00006a6a0000ec4800001804000002140000fa0a000056020000aa020000e406000088070000821300009c050000ce0400004c0b0000780a00000c100000b60800002c13000054110000c61700004c0c0000d21b000044040000ba000000fc0f00006c1a0000741f0000a41d0000b21d0000de1d0000301a0000261d00001e0e0000841f00006e01000092010000122300002e23000038230000c6210000d0210000ce210000ee0600004efefefff2060000ee0a0000b6150000921aedff00000000a02400008424000086250000de84ffff3025000002250000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -766,8 +834,13 @@ MonoBehaviour:
     y: 0
     width: 512
     height: 271
+<<<<<<< HEAD
   m_MinSize: {x: 102, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
+=======
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+>>>>>>> Slopes
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
