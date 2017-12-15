@@ -9,7 +9,7 @@ public class ControllableObject : MonoBehaviour
     protected Vector3 velocity;
 
     protected Controller2DScript controller;
-    protected SpriteRenderer renderer;
+    protected Animator animator;
 
     //Height in units
     public float jumpHeight = 2.5f;
@@ -55,14 +55,14 @@ public class ControllableObject : MonoBehaviour
         set
         {
             facing = value;
-            renderer.flipX = facing;
+            animator.SetBool("FacingRight", facing);
         }
     }
 
     protected void Start()
     {
         controller = GetComponent<Controller2DScript>();
-        renderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     virtual protected void Update()
@@ -74,6 +74,8 @@ public class ControllableObject : MonoBehaviour
         if (!controller.collisions.below && (controller.collisions.right || controller.collisions.left))
             velocity.x = 0;
 
+        UpdateAnimator();
+
         DoFlinch();
 
         Jump();
@@ -81,9 +83,7 @@ public class ControllableObject : MonoBehaviour
         //Smooth horizontal movement
         float targetVelocity = horizontalAxis * (run ? runSpeed : walkSpeed);
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocity, ref velocitySmoothX, (controller.collisions.below || onStairs) && !flinched ? smoothTimeGrounded : smoothTimeAirborne);
-        if (velocity.x != 0)
-            Facing = velocity.x > 0;
-
+        
         targetVelocity = verticalAxis * walkSpeed;
         bool moveThroughFloor = controller.collisions.semiFloor && targetVelocity < 0;
 
@@ -100,6 +100,8 @@ public class ControllableObject : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
 
         controller.MovePlayer(velocity * Time.deltaTime, moveThroughFloor);
+
+        
     }
     virtual protected void Jump()
     {
@@ -131,5 +133,19 @@ public class ControllableObject : MonoBehaviour
 
         flinched = true;
         flinchTimer = flinchTime;
+    }
+
+    void UpdateAnimator()
+    {
+        if (velocity.x != 0)
+            Facing = velocity.x > 0;
+
+        animator.SetFloat("HorizontalSpeed", velocity.x);
+
+        bool standingStill = velocity.x < 0.2f && velocity.x > -0.2f;
+        animator.SetBool("StandingStill", standingStill);
+
+        //For freezing in mid-air, edit if jump animation is added
+        animator.enabled = controller.collisions.below;
     }
 }

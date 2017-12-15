@@ -1,0 +1,8 @@
+0,0 is linksonder (a la wiskunde)
+
+L	Left Slope up
+l	Left slope down
+R	Right slope up
+r	Right slope down
+X	Block
+ 	Empty
