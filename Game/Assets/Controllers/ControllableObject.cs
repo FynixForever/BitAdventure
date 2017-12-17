@@ -29,6 +29,8 @@ public class ControllableObject : MonoBehaviour
     //Controls
     protected bool jump;
     protected bool run;
+    protected bool startAttack;
+    protected bool isAttacking;
     protected float horizontalAxis;
     protected float verticalAxis;
 
@@ -135,6 +137,11 @@ public class ControllableObject : MonoBehaviour
         flinchTimer = flinchTime;
     }
 
+    public void AttackDone()
+    {
+        isAttacking = false;
+    }
+
     void UpdateAnimator()
     {
         if (velocity.x != 0)
@@ -144,6 +151,8 @@ public class ControllableObject : MonoBehaviour
 
         bool standingStill = velocity.x < 0.2f && velocity.x > -0.2f;
         animator.SetBool("StandingStill", standingStill);
+
+        animator.SetBool("IsAttacking", startAttack);
 
         //For freezing in mid-air, edit if jump animation is added
         animator.enabled = controller.collisions.below;

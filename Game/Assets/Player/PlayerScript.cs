@@ -40,6 +40,11 @@ public class PlayerScript : ControllableObject {
         jump = Input.GetKey(KeyCode.Space);
         run = Input.GetKey(KeyCode.LeftShift);
 
+        startAttack = isAttacking ? false : Input.GetKeyDown(KeyCode.C);
+
+        if (startAttack)
+            isAttacking = true;
+
         base.Update();
     }
 
