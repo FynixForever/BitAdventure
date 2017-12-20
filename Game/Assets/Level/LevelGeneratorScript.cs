@@ -81,7 +81,6 @@ public class LevelGeneratorScript : MonoBehaviour {
 
         //Instantiate the player and camera
         GameObject p = Instantiate(Player, new Vector3(passages[0].x * 16, -passages[0].y * 12, -1), Quaternion.Euler(0, 0, 0));
-        p.transform.parent = this.transform;
 
         FollowPlayer fP = Instantiate(Camera).GetComponent<FollowPlayer>();
         fP.player = p.transform;
