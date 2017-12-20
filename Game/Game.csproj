@@ -89,6 +89,7 @@
     <Compile Include="Assets\Level\FieldScript.cs" />
     <Compile Include="Assets\Level\LevelGeneratorScript.cs" />
     <Compile Include="Assets\Level\RoomPresetScript.cs" />
+    <Compile Include="Assets\Level\RoomPresetScriptOld.cs" />
     <Compile Include="Assets\Player\PlayerScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-    public class SnapScript : MonoBehaviour
+public class SnapScript : MonoBehaviour
+{
+    public float snapValue = 0.5f;
+    public float depth = 0;
+
+    void Update()
     {
-        public float snapValue = 0.5f;
-        public float depth = 0;
+        float snapInverse = 1 / snapValue;
 
-        void Update()
-        {
-            float snapInverse = 1 / snapValue;
+        float x, y, z;
 
-            float x, y, z;
+        // if snapValue = .5, x = 1.45 -> snapInverse = 2 -> x*2 => 2.90 -> round 2.90 => 3 -> 3/2 => 1.5
+        // so 1.45 to nearest .5 is 1.5
+        x = Mathf.Round(transform.position.x * snapInverse) / snapInverse;
+        y = Mathf.Round(transform.position.y * snapInverse) / snapInverse;
+        z = depth;  // depth from camera
 
-            // if snapValue = .5, x = 1.45 -> snapInverse = 2 -> x*2 => 2.90 -> round 2.90 => 3 -> 3/2 => 1.5
-            // so 1.45 to nearest .5 is 1.5
-            x = Mathf.Round(transform.position.x * snapInverse) / snapInverse;
-            y = Mathf.Round(transform.position.y * snapInverse) / snapInverse;
-            z = depth;  // depth from camera
-
-            transform.position = new Vector3(x, y, z);
-        }
+        transform.position = new Vector3(x, y, z);
     }
+}

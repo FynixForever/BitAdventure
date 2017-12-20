@@ -1,8 +1,14 @@
 0,0 is linksonder (a la wiskunde)
+Script werkt met één lange string. 1e character is positie 0,0.
+1 kamer is 16x12 blokken groot.
 
-L	Left Slope up
+|	Line break/Enter
+
 l	Left slope down
-R	Right slope up
+L	Left Slope up
 r	Right slope down
-X	Block
- 	Empty
+R	Right slope up
+ 	Block
+X	Empty
+t	Ladder
+T	Top ladder

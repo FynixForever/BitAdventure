@@ -31,30 +31,22 @@ public class FieldScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Transform[] children = GetComponentsInChildren<Transform>();
-        bottomLeft = topRight = children[0].position;
+        center = transform.position;
 
-        foreach (Transform t in children)
+        if (largeRoom)
         {
-            if (t.position.x < bottomLeft.x || t.position.y < bottomLeft.y)
-                bottomLeft = t.position;
-            if (t.position.x > topRight.x || t.position.y > topRight.y)
-                topRight = t.position;
+            bottomLeft = center - new Vector3(8, 6);
+            topRight = center + new Vector3(8, 6);
+            cameraSize = 9;
         }
-        
-        bottomLeft -= new Vector3(0.5f, 0.5f);
-        topRight += new Vector3(0.5f, 0.5f);
-
-        center = (bottomLeft + topRight) / 2;
-
-        cameraSize = largeRoom ? 9 : 6;
+        else
+        {
+            bottomLeft = center - new Vector3(8, 6);
+            topRight = center + new Vector3(8, 6);
+            cameraSize = 6;
+        }
 
         //DEBUG
         //Debug.Log("Center: " + center + " Bottom Left: " + bottomLeft + " Top Right: " + topRight);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

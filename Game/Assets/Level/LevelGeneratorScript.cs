@@ -380,25 +380,31 @@ public class LevelGeneratorScript : MonoBehaviour {
     }
     FieldScript NewRoom(int x, int y)
     {
-        //Instantiates a new room according to the preset
-        GameObject room = RoomPreset;
+        //Instantiate the room as a child of the Level Generator
+        GameObject room = Instantiate(RoomPreset, new Vector3(x * 16, -y * 12), Quaternion.identity, this.transform);
         RoomPresetScript roomPreset = room.GetComponent<RoomPresetScript>();
 
-        //Create openings
-        roomPreset.Up(field[x, y].directions[0]);
-        roomPreset.Right(field[x, y].directions[1]);
-        roomPreset.Down(field[x, y].directions[2]);
-        roomPreset.Left(field[x, y].directions[3]);
+        //For testing, this is where the room is created from a string
+        //Enter your room generation code here. Initialize accepts a char[,]
+        string testTemplate;
+        testTemplate = "                | XXXXXXXXXXXXXX |XXXXXXXXXXXXXXXX|XXXXXXXXXXXXXXXX| XXXXXXXXXXXXXX | XXXXXXXXXXXXXX | XXXXXXXXXXXXXX | XXXXXXXXXXXXXX | XXXXXXXXXXXXXX | XXXXXXXXXXXXXX | XXXXXXXXXXXXXX |                |";
 
-        //Create the contents
-        int i = Random.Range(0, 3);
-        roomPreset.Contents(i);
+        char[,] roomTemplate = new char[16, 12];
+        string[] s = testTemplate.Split('|');
+        char[][] c = new char[12][];
 
-        //Instantiate the room as a child of the Level Generator
-        GameObject o = Instantiate(room, new Vector3(x * 16, -y * 12), Quaternion.Euler(0, 0, 0), this.transform);
+        for(int i = 0; i < 12; i++)
+            c[i] = s[i].ToCharArray();
+
+        for (int i = 0; i < 16; i++)
+            for (int j = 0; j < 12; j++)
+                roomTemplate[i, j] = c[j][i];
+        
+
+        roomPreset.Initialize(roomTemplate);
 
         //Assign an ID and return the FieldScript
-        FieldScript fS = o.GetComponent<FieldScript>();
+        FieldScript fS = room.GetComponent<FieldScript>();
         fS.fieldID = new Point(x, y);
 
         return fS;

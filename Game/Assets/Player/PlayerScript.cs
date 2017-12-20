@@ -40,6 +40,8 @@ public class PlayerScript : ControllableObject {
         jump = Input.GetKey(KeyCode.Space);
         run = Input.GetKey(KeyCode.LeftShift);
 
+        //Attack starts on press of a button, if the player is not already attacking.
+        //Attack stops when animation has ended, using an Animation Event.
         startAttack = isAttacking ? false : Input.GetKeyDown(KeyCode.C);
 
         if (startAttack)
